@@ -24,13 +24,14 @@ const readCustomerById = (id, callback) => {
 const createCustomer = (data, callback) => {
   const id = uuidv4();
   db.query(
-    `INSERT INTO customer (id, firstName, lastName, email, hash, image, status, 
-      createdAt, updatedAt) VALUES (?,?,?,?,?,?,?,?,?)`,
+    `INSERT INTO customer (id, Firstname, LastName, email,phone, hash, image, status, 
+      createdAt, updatedAt) VALUES (?,?,?,?,?,?,?,?,?,?)`,
     [
       id,
-      data.firstName,
-      data.lastName,
+      data.Firstname,
+      data.LastName,
       data.email,
+      data.phone,
       data.hash,
       data.image,
       data.status || 'INACTIVE',
@@ -38,8 +39,9 @@ const createCustomer = (data, callback) => {
       new Date(),
     ],
     (err, res) => {
-      if (err) {
-        callback(err, null);
+      if (err && err.errno === 1062) {
+        callback({ errcode: 'customer_exist' }, null);
+        // console.log(err.errno);
       } else {
         callback(null, res);
       }
@@ -49,9 +51,9 @@ const createCustomer = (data, callback) => {
 
 const updateCustomer = (data, callback) => {
   db.query(
-    `UPDATE customer SET firstName=?, lastName=?,
+    `UPDATE customer SET Firstname=?, LastName=?,
      hash=?, image=?, updatedAt=? WHERE id=?`,
-    [data.firstName, data.lastName, data.hash, data.image, new Date(), data.id],
+    [data.Firstname, data.LastName, data.hash, data.image, new Date(), data.id],
     (err, res) => {
       if (err) {
         callback(err, null);

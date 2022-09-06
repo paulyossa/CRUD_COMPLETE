@@ -5,7 +5,7 @@ const {
   updateproductCategory,
   removeproductCategory,
 } = require('../models/productCategory');
-    
+
 const getAllproductCategory = (req, res) => {
   readproductCategory((err, result) => {
     if (err) {
@@ -14,7 +14,7 @@ const getAllproductCategory = (req, res) => {
     res.json({ success: 1, orders: result });
   });
 };
-    
+
 const getproductCategoryById = (req, res) => {
   const id = req.params.id;
   readproductCategoryById(id, (err, result) => {
@@ -24,7 +24,7 @@ const getproductCategoryById = (req, res) => {
     res.json({ success: 1, order: result[0] });
   });
 };
-    
+
 const postproductCategory = (req, res) => {
   const data = req.body;
   createproductCategory(data, (err, result) => {
@@ -36,7 +36,7 @@ const postproductCategory = (req, res) => {
     }
   });
 };
-    
+
 const patchproductCategory = (req, res) => {
   const data = req.body;
   updateproductCategory(data, (err, result) => {
@@ -48,7 +48,7 @@ const patchproductCategory = (req, res) => {
     }
   });
 };
-    
+
 const deleteproductCategory = (req, res) => {
   const id = req.params.id;
   removeproductCategory(id, (err, result) => {
@@ -60,7 +60,7 @@ const deleteproductCategory = (req, res) => {
     }
   });
 };
-    
+
 module.exports = {
   getAllproductCategory,
   getproductCategoryById,
@@ -68,4 +68,3 @@ module.exports = {
   patchproductCategory,
   deleteproductCategory,
 };
-    

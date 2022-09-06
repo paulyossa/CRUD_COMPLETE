@@ -1,7 +1,7 @@
 const db = require('../../config/db');
 const { v4: uuidv4 } = require('uuid');
 
-const readOrderDetail= (callback) => {
+const readOrderDetail = (callback) => {
   db.query('SELECT * FROM order_detail', (err, res) => {
     if (err) {
       callback(err, null);
@@ -21,17 +21,11 @@ const readOrderDetailById = (id, callback) => {
   });
 };
 
-const createOrderDetail= (data, callback) => {
+const createOrderDetail = (data, callback) => {
   const id = uuidv4();
   db.query(
     ' INSERT INTO `order_detail` (`id`, `name`, `quantity` , `price`, `orderId`) VALUES (?,?,?,?,?)',
-    [
-      id,
-      data.name,
-      data.quantity,
-      data.price,
-      data.orderId,
-    ],
+    [id, data.name, data.quantity, data.price, data.orderId],
     (err, res) => {
       if (err) {
         callback(err, null);
@@ -42,10 +36,10 @@ const createOrderDetail= (data, callback) => {
   );
 };
 
-const updateOrderDetail= (data, callback) => {
+const updateOrderDetail = (data, callback) => {
   db.query(
     'UPDATE `order_detail` SET `name`=?, `quantity`=?, `price`=? WHERE `id`=?',
-    [data.name, data.quantity, data.price,data.id],
+    [data.name, data.quantity, data.price, data.id],
     (err, res) => {
       if (err) {
         callback(err, null);
@@ -56,7 +50,7 @@ const updateOrderDetail= (data, callback) => {
   );
 };
 
-const removeOrderDetail= (id, callback) => {
+const removeOrderDetail = (id, callback) => {
   db.query('DELETE FROM `order_detail` WHERE id = ?', [id], (err, res) => {
     if (err) {
       callback(err, null);

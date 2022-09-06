@@ -5,7 +5,7 @@ const {
   updateOrderDetail,
   removeOrderDetail,
 } = require('../models/OrderDetail');
-  
+
 const getAllOrderDetail = (req, res) => {
   readOrderDetail((err, result) => {
     if (err) {
@@ -14,7 +14,7 @@ const getAllOrderDetail = (req, res) => {
     res.json({ success: 1, orders: result });
   });
 };
-  
+
 const getOrderDetailById = (req, res) => {
   const id = req.params.id;
   readOrderDetailById(id, (err, result) => {
@@ -24,7 +24,7 @@ const getOrderDetailById = (req, res) => {
     res.json({ success: 1, order: result[0] });
   });
 };
-  
+
 const postOrderDetail = (req, res) => {
   const data = req.body;
   createOrderDetail(data, (err, result) => {
@@ -36,7 +36,7 @@ const postOrderDetail = (req, res) => {
     }
   });
 };
-  
+
 const patchOrderDetail = (req, res) => {
   const data = req.body;
   updateOrderDetail(data, (err, result) => {
@@ -48,7 +48,7 @@ const patchOrderDetail = (req, res) => {
     }
   });
 };
-  
+
 const deleteOrderDetail = (req, res) => {
   const id = req.params.id;
   removeOrderDetail(id, (err, result) => {
@@ -60,7 +60,7 @@ const deleteOrderDetail = (req, res) => {
     }
   });
 };
-  
+
 module.exports = {
   getAllOrderDetail,
   getOrderDetailById,
@@ -68,4 +68,3 @@ module.exports = {
   patchOrderDetail,
   deleteOrderDetail,
 };
-  

@@ -21,7 +21,7 @@ const getCustomerById = (req, res) => {
     if (err) {
       console.log(err);
     }
-    res.json({ success: 1, customer: result[0] });
+    res.json({ success: 1, customer: result });
   });
 };
 
@@ -29,10 +29,10 @@ const postCustomer = (req, res) => {
   const data = req.body;
   createCustomer(data, (err, result) => {
     if (err) {
-      console.log(err);
-    }
-    if (result.affectedRows) {
-      res.json({ success: 1, message: 'Customer created !' });
+      res.json({ success: 0, err });
+      // console.log(err);
+    } else if (result.affectedRows) {
+      res.json({ success: 1, message: 'customers created' });
     }
   });
 };
